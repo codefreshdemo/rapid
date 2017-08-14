@@ -1,3 +1,8 @@
+FROM node:8.1.4-alpine as react
+COPY /react /rapid/react
+RUN ls /react
+# RUN cd react && yarn install && yarn run build
+
 FROM openjdk:8-jdk-alpine as build
 
 RUN apk add --no-cache curl tar
@@ -24,10 +29,7 @@ WORKDIR /rapid
 # use 1 thread per available CPU core then remove the target directory
 RUN mvn -T 1C install -DskipTests
 
-FROM node:8.1.4-alpine as react
-COPY /react /rapid/react
-RUN ls /react
-# RUN cd react && yarn install && yarn run build
+
 
 # prod stage
 FROM openjdk:8-jre-alpine
