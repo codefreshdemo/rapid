@@ -8,6 +8,9 @@ spec:
     matchLabels:
       app: codefresh-rapid
   template:
+    metadata:
+      labels:
+        app: codefresh-rapid
     spec:
       volumes:
         - name: docker-socket
