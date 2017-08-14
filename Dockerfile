@@ -20,6 +20,7 @@ COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
 COPY react /rapid/react
+RUN ls /rapid/react
 
 # use 1 thread per available CPU core then remove the target directory
 RUN mvn -T 1C install -DskipTests
