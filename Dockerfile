@@ -1,4 +1,5 @@
 FROM node:8.1.4-alpine
+RUN ls .
 COPY /rapid/react /react
 RUN ls /react
 # RUN cd react && yarn install && yarn run build
