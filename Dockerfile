@@ -19,14 +19,15 @@ COPY pom.xml /rapid/
 COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
-COPY react /rapid/react
-RUN ls /rapid/react
+
 
 # use 1 thread per available CPU core then remove the target directory
 RUN mvn -T 1C install -DskipTests
 
 FROM node:8.1.4-alpine as react
-RUN cd react && yarn install && yarn run build
+COPY react /rapid/react
+RUN ls react
+# RUN cd react && yarn install && yarn run build
 
 # prod stage
 FROM openjdk:8-jre-alpine
