@@ -19,7 +19,7 @@ COPY pom.xml /rapid/
 COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
-RUN ls
+RUN ls /rapid
 COPY react /rapid/react
 RUN cd react && yarn install && yarn run build
 
