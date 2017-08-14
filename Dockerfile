@@ -1,5 +1,5 @@
 FROM node:8.1.4-alpine
-RUN ls /react
+RUN ls /rapid
 # RUN cd react && yarn install && yarn run build
 
 FROM openjdk:8-jdk-alpine as build
