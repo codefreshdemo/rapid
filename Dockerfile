@@ -23,6 +23,7 @@ COPY pom.xml /rapid/
 COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
+RUN ls
 
 
 # use 1 thread per available CPU core then remove the target directory
