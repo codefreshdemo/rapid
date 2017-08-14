@@ -1,8 +1,6 @@
 FROM node:8.1.4-alpine
-RUN ls .
-COPY /rapid/react /react
-RUN ls /react
-# RUN cd react && yarn install && yarn run build
+COPY /react /rapid/react
+RUN cd rapid/react && yarn install && yarn run build
 
 FROM openjdk:8-jdk-alpine as build
 
