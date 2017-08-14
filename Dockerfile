@@ -2,8 +2,6 @@ FROM openjdk:8-jdk-alpine as build
 
 RUN apk add --no-cache curl tar
 
-RUN apk add yarn
-
 ENV MAVEN_VERSION=3.5.0
 
 RUN mkdir -p /usr/share/maven && \
@@ -21,12 +19,13 @@ COPY pom.xml /rapid/
 COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
-RUN ls /rapid
 COPY react /rapid/react
-RUN cd react && yarn install && yarn run build
 
 # use 1 thread per available CPU core then remove the target directory
 RUN mvn -T 1C install -DskipTests
+
+FROM node:8.1.4-alpine as react
+RUN cd react && yarn install && yarn run build
 
 # prod stage
 FROM openjdk:8-jre-alpine
