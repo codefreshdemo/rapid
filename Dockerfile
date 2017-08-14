@@ -25,8 +25,8 @@ WORKDIR /rapid
 RUN mvn -T 1C install -DskipTests
 
 FROM node:8.1.4-alpine as react
-COPY react /rapid/react
-RUN ls react
+COPY /react /rapid/react
+RUN ls /react
 # RUN cd react && yarn install && yarn run build
 
 # prod stage
