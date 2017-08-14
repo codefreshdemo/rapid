@@ -1,4 +1,4 @@
-FROM node:7-alpine
+FROM node:7-alpine as alpine
 COPY . .
 RUN cd react && yarn install && yarn run build
 
@@ -23,8 +23,8 @@ COPY pom.xml /rapid/
 COPY src/main /rapid/src/main/
 
 WORKDIR /rapid
-RUN ls
-
+COPY --from=alpine /react /rapid/react
+RUN ls /rapid
 
 # use 1 thread per available CPU core then remove the target directory
 RUN mvn -T 1C install -DskipTests
